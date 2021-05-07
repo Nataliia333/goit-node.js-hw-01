@@ -1,5 +1,6 @@
-import fs from "fs";
+import * as fs from "fs/promises";
 import path from "path";
+import shortid from "shortid";
 
 const contactsPath = path.join("./db", "contacts.json");
 
@@ -52,8 +53,8 @@ async function addContact(name, email, phone) {
 
     await fs.writeFile(contactsPath, newContactsList);
 
-    const dataUpdated = await fs.readFile(contactsPath);
-    console.table(JSON.parse(dataUpdated));
+    const contactUpdated = await fs.readFile(contactsPath);
+    console.table(JSON.parse(contactUpdated));
   } catch (err) {
     console.error(err.message);
   }
