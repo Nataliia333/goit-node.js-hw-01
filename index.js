@@ -5,6 +5,7 @@ import {
   addContact,
 } from "./contacts.js";
 // import program from "./utils/commander.js";
+
 import commander from "commander";
 const { program } = commander;
 
@@ -14,6 +15,7 @@ program
   .option("-n, --name <type>", "user name")
   .option("-e, --email <type>", "user email")
   .option("-p, --phone <type>", "user phone");
+
 program.parse(process.argv);
 
 const argv = program.opts();

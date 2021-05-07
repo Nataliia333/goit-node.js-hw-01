@@ -9,8 +9,8 @@ async function listContacts() {
     const data = await fs.readFile(contactsPath);
     const contacts = JSON.parse(data);
     console.table(contacts);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.error(err.message);
   }
 }
 
@@ -20,8 +20,8 @@ async function getContactById(contactId) {
     const contacts = JSON.parse(data);
     const contact = contacts.find(({ id }) => String(id) === contactId);
     console.table(contact);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.error(err.message);
   }
 }
 
@@ -38,8 +38,8 @@ async function removeContact(contactId) {
 
     const contactUpdated = await fs.readFile(contactsPath);
     console.table(JSON.parse(contactUpdated));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.error(err.message);
   }
 }
 
@@ -54,14 +54,9 @@ async function addContact(name, email, phone) {
 
     const dataUpdated = await fs.readFile(contactsPath);
     console.table(JSON.parse(dataUpdated));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.error(err.message);
   }
 }
 
-module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-};
+export { listContacts, getContactById, removeContact, addContact };
